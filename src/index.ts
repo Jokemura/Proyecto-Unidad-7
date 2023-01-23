@@ -31,6 +31,6 @@ app.use('/api/v1/songs', songRouter);
 // Playlists Module
 app.use('/api/v1/playlist', playlistRouter);
 
-const PORT =9002
+
 
 app.listen(PORT, () => console.log(`Server init at http://localhost:${PORT}`));
