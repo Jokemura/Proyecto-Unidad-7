@@ -2,19 +2,19 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from "cors";
 import { userRouter } from './users/routers.users';
-import { songRouter } from './songs/song.router';
+import { songRouter } from './songs/songs.router';
 import { playlistRouter } from './playlist/playlist.router';
 
 
 // Base Settings
 dotenv.config();
-const PORT: number = parseInt(process.env.PORT as string, 10);
+const port: number = parseInt(process.env.PORT as string, 10);
 const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`[server]: Server is running at http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`[server]: Server is running at http://localhost:${port}`);
 });
 
 // Principal
@@ -22,13 +22,13 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hola a Mundo Music s👌 ');
 });
 
-// Users Module
+// Rutta de usuarios
 app.use('/api/v1/users', userRouter);
 
-// Songs Module
+// Ruta de canciones
 app.use('/api/v1/songs', songRouter);
 
-// Playlists Module
+// Rutas de Playlist
 app.use('/api/v1/playlist', playlistRouter);
 
 
