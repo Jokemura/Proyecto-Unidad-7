@@ -1,6 +1,6 @@
 import { db } from "../database/server";
 
-type song = {
+type songs = {
     id: number;
     name: string;
     artist: string;
@@ -8,11 +8,11 @@ type song = {
     year: number;
     genre: string;
     duration: number;
-    isPublic: boolean
+    is_private: boolean
 }
 
 export const listSongs = async (): Promise<song[]> => {
-    return db.song.findMany({
+    return db.songs.findMany({
         select: {
             id: true,
             name: true,
@@ -21,7 +21,7 @@ export const listSongs = async (): Promise<song[]> => {
             year: true,
             genre: true,
             duration: true,
-            isPublic: true,
+            is_private: true  ,
         }
     })
 }
@@ -30,7 +30,7 @@ export const listSongs = async (): Promise<song[]> => {
 // Get songs by Id
 
 export const getSongs = async (id: number): Promise<song | null> => {
-    return db.song.findUnique({
+    return db.songs.findUnique({
         where: {
             id,
         },
@@ -42,7 +42,7 @@ export const getSongs = async (id: number): Promise<song | null> => {
             year:true, 
             genre:true, 
             duration:true,
-            isPublic: true,
+            is_private: true,
         }
     })
 }
@@ -52,7 +52,7 @@ export const getSongs = async (id: number): Promise<song | null> => {
 // Funcion para crear nuevas canciones
 export const createSong = async (song: Omit<song, 'id'>): Promise<song> => {
     const { name, artist, album, year, genre, duration, isPublic} = song;
-    return db.song.create({
+    return db.songs.create({
         data: {
             name, 
             artist, 
@@ -60,7 +60,7 @@ export const createSong = async (song: Omit<song, 'id'>): Promise<song> => {
             year, 
             genre, 
             duration,
-            isPublic
+            isPublic,
         },
         select: {
             id: true,
@@ -77,7 +77,7 @@ export const createSong = async (song: Omit<song, 'id'>): Promise<song> => {
 
 //Funcion para listar por id
 export const getUser = async (id: number): Promise<song | null> => {
-    return db.song.findUnique({
+    return db.songs.findUnique({
         where: {
             id,
         },
@@ -119,7 +119,7 @@ export const updateSong = async (song: Omit<song, 'id'>, id:number): Promise<son
     })
 }
 
-//Funcion para borra canciones
+//Funcion para borrar canciones
 export const deleteSong = async (id:number): Promise<void> => {
     await db.song.delete({
         where: {

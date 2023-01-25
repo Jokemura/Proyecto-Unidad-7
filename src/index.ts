@@ -33,4 +33,4 @@ app.use('/api/v1/playlist', playlistRouter);
 
 
 
-app.listen(PORT, () => console.log(`Server init at http://localhost:${PORT}`));
+app.listen(port, () => console.log(`Server init at http://localhost:${port}`));

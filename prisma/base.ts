@@ -24,7 +24,7 @@ type playlist = {
 async function seed() {
     await Promise.all(
         getUsers().map((user) => {
-            return db.users.create({
+            return db.user.create({
                 data: {
                     email: user.email,
                     name: user.name,
@@ -78,12 +78,12 @@ function getPlaylists(): Array<playlist> {
 
 function getSongs(): Array<song> {
     return [{
-        name: 'Despacito',
-        album: 'Despacito',
-        artist: 'Luis Fonsi',
-        year: 2015,
-        genre: 'Regueaton',
-        duration: 520,
+        name: 'Cancion',
+        album: 'albums',
+        artist: 'artista',
+        year: 2020,
+        genre: 'gernero',
+        duration: 400,
         playlistid: 1
     }]
 }
