@@ -22,12 +22,12 @@ model User {
    
 }
 
-model Song{
+model song{
   id Int  @default(autoincrement()) @id
   name String 
   artist String 
   album String 
-  year String?
+  year Int
   genre String 
   duration Int
   isPublic Boolean @default(true)
@@ -39,7 +39,7 @@ model Playlist {
   id Int  @default(autoincrement()) @id
   name String 
   user  User? @relation(fields: [userId], references: [id])
-  userId Int?
-  songs Song[]
+  userId Int
+  songs song[]
 
 }

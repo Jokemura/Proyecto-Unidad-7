@@ -5,10 +5,10 @@ type song = {
     name: string;
     artist: string;
     album: string;
-    year: number;
+    year: string | null ;
     genre: string;
     duration: number;
-    is_private: boolean
+    isPublic: boolean
 }
 
 export const listSongs = async (): Promise<song[]> => {
@@ -21,13 +21,13 @@ export const listSongs = async (): Promise<song[]> => {
             year: true,
             genre: true,
             duration: true,
-            is_private: true  ,
+            isPublic: true  ,
         }
     })
 }
 
 
-// Get songs by Id
+//listar canciones por id
 
 export const getSongs = async (id: number): Promise<song | null> => {
     return db.song.findUnique({
@@ -42,7 +42,7 @@ export const getSongs = async (id: number): Promise<song | null> => {
             year:true, 
             genre:true, 
             duration:true,
-            is_private: true,
+            isPublic: true,
         }
     })
 }
@@ -76,15 +76,21 @@ export const createSong = async (song: Omit<song, 'id'>): Promise<song> => {
 }
 
 //Funcion para listar por id
-export const getUser = async (id: number): Promise< songs | null> => {
-    return db.songs.findUnique({
+export const getUser = async (id: number): Promise< song | null> => {
+    return db.song.findUnique({
         where: {
             id,
         },
         select: {
             id: true,
-            name:true, 
-            playlist: true,
+            name: true,
+            artist: true,
+            album: true,
+            year: true,
+            genre: true,
+            duration: true,
+            isPublic: true,
+            
         }
     })
 }
