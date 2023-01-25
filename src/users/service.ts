@@ -1,4 +1,4 @@
-import { db } from "../database/server";
+import { db } from "../database/db.server"
 
 type user = {
     id: number
@@ -7,7 +7,7 @@ type user = {
 }
 
 export const Userslist = async (): Promise<user[]> => {
-    return db.users.findMany({
+    return db.user.findMany({
         select: {
             id: true,
             name: true,

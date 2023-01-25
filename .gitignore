@@ -1,4 +1,7 @@
 node_modules
 # Keep environment variables out of version control
 .env
-"mysql"
+dev.db
+migrations
+dev.db-journal
+migration_lock.toml
