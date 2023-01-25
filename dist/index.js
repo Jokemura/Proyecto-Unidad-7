@@ -10,3 +10,23 @@ app_1.default.get("/", (req, res) => {
     res.send("Hi");
 });
 app_1.default.listen(PORT, () => console.log(`Server init at http://localhost:${PORT}`));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Aquí establecemos las variables de entorno, la ruta raíz y por último indicamos el puerto y muestra un mensaje en la consola indicando que el servidor se ha iniciado correctamente.
