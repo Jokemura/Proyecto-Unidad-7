@@ -8,14 +8,12 @@ import { playlistRouter } from './playlist/playlist.router';
 
 // Base Settings
 dotenv.config();
-const port: number = parseInt(process.env.PORT as string, 10);
+const port: number = Number(process.env.PORT);
 const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
-});
+
 
 // Principal
 app.get('/', (req: Request, res: Response) => {
@@ -34,3 +32,5 @@ app.use('/api/v1/playlist', playlistRouter);
 
 
 app.listen(port, () => console.log(`Server init at http://localhost:${port}`));
+
+
