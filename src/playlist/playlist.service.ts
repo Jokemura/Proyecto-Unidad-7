@@ -1,12 +1,10 @@
 import { db } from  "../database/db.server";
+import { Playlist } from "@prisma/client";
 
-type play = {
-    id:number;
-    name: string;
-    userId:number | null;
-}
 
-export const listPlaylist = async (): Promise<play[]> => {
+
+
+export const listPlaylist = async (): Promise<Playlist[]> => {
     return db.playlist.findMany({
         select: {
             id: true,
@@ -20,7 +18,7 @@ export const listPlaylist = async (): Promise<play[]> => {
 
 
 // listar playlist por id 
-export const getPlaylist = async (id: number): Promise<play | null> => {
+export const getPlaylist = async (id: number): Promise<Playlist | null> => {
     return db.playlist.findUnique({
         where: {
             id,
@@ -34,7 +32,7 @@ export const getPlaylist = async (id: number): Promise<play | null> => {
 }
 
 // crear playlist
-export const createPlaylist = async (play: Omit<play, 'id'>): Promise<play> => {
+export const createPlaylist = async (play: Omit<Playlist, 'id'>): Promise<Playlist> => {
     const { name, userId } = play;
     let userIdToSave = userId;
     if(userId === null) {
@@ -60,7 +58,7 @@ export const createPlaylist = async (play: Omit<play, 'id'>): Promise<play> => {
 
 
 // actualizar la playlist
-export const updatePlaylist = async (user: Omit<play, 'id'>, id:number): Promise<play> => {
+export const updatePlaylist = async (user: Omit<Playlist, 'id'>, id:number): Promise<Playlist> => {
     const { name, userId } = user;
     return db.playlist.update({
         where: {
