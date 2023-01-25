@@ -1,6 +1,6 @@
-import { db } from "../database/server";
+import { db } from "../database/db.server";
 
-type songs = {
+type song = {
     id: number;
     name: string;
     artist: string;
@@ -12,7 +12,7 @@ type songs = {
 }
 
 export const listSongs = async (): Promise<song[]> => {
-    return db.songs.findMany({
+    return db.song.findMany({
         select: {
             id: true,
             name: true,
@@ -30,7 +30,7 @@ export const listSongs = async (): Promise<song[]> => {
 // Get songs by Id
 
 export const getSongs = async (id: number): Promise<song | null> => {
-    return db.songs.findUnique({
+    return db.song.findUnique({
         where: {
             id,
         },
@@ -52,7 +52,7 @@ export const getSongs = async (id: number): Promise<song | null> => {
 // Funcion para crear nuevas canciones
 export const createSong = async (song: Omit<song, 'id'>): Promise<song> => {
     const { name, artist, album, year, genre, duration, isPublic} = song;
-    return db.songs.create({
+    return db.song.create({
         data: {
             name, 
             artist, 
@@ -76,7 +76,7 @@ export const createSong = async (song: Omit<song, 'id'>): Promise<song> => {
 }
 
 //Funcion para listar por id
-export const getUser = async (id: number): Promise<song | null> => {
+export const getUser = async (id: number): Promise< songs | null> => {
     return db.songs.findUnique({
         where: {
             id,
@@ -84,7 +84,7 @@ export const getUser = async (id: number): Promise<song | null> => {
         select: {
             id: true,
             name:true, 
-            playlist:true,
+            playlist: true,
         }
     })
 }
